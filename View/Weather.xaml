@@ -7,18 +7,21 @@
         mc:Ignorable="d"
         Title="Weather" Height="650" Width="450">
     <Window.DataContext>
-        <local:WeatherViewModel/>
+        <local:WeatherViewModel />
     </Window.DataContext>
     <Grid>
         <ListView ItemsSource="{Binding DailyInfo}" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Top">
             <ListView.ItemTemplate>
-                <DataTemplate x:Name="SingleLineDataTemplate">
+                <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Temperature}" />
+                        <Image Source="{Binding Icon}"></Image>
+                        <Label Content="{Binding ApparentTemperatureLow}" />
+                        <Label Content="{Binding ApparentTemperatureHigh}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="357,351,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CmdInit}"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="357,351,0,0" VerticalAlignment="Top" Width="75"
+                Command="{Binding CmdInit}" />
     </Grid>
 </Window>

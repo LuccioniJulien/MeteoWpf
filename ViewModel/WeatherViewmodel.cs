@@ -5,19 +5,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Meteo.Repository.Api;
 
 namespace Meteo.ViewModel
 {
     public class WeatherViewModel : INotifyPropertyChanged
     {
-
         #region Getter Setter
+
         private Weather _weatherForecast;
+
         public Weather WeatherForecast
         {
             get => _weatherForecast;
@@ -31,30 +34,30 @@ namespace Meteo.ViewModel
         public ObservableCollection<WeatherDailyInfo> DailyInfo { get; } = new ObservableCollection<WeatherDailyInfo>();
 
         private ICommand _cmdInit;
-        public ICommand CmdInit
-        {
-            get => _cmdInit ?? (_cmdInit = new Command(Init));
-        }
+        public ICommand CmdInit => _cmdInit ?? (_cmdInit = new Command(InitData));
+
         #endregion
 
         public WeatherViewModel()
         {
-
         }
 
-        public void Init()
+        private async void InitData()
         {
-            var dailyInfosList = new List<WeatherDailyInfo> { new WeatherDailyInfo { Temperature = 10 }, new WeatherDailyInfo { Temperature = 20 } };
-            dailyInfosList.ForEach(DailyInfo.Add);
+            var ok = new WeatherApi();
+            var (o, s, d) = await ok.GetWeatherForLocation();
+            s.ForEach(DailyInfo.Add);
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void RaisePropertyChanged([CallerMemberName] string name = null)
+        private void RaisePropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(name, new PropertyChangedEventArgs(name));
         }
+
         #endregion
     }
 }
