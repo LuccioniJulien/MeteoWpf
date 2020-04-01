@@ -10,18 +10,47 @@
         <local:WeatherViewModel />
     </Window.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding DailyInfo}" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Top">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Icon}"></Image>
-                        <Label Content="{Binding ApparentTemperatureLow}" />
-                        <Label Content="{Binding ApparentTemperatureHigh}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="357,351,0,0" VerticalAlignment="Top" Width="75"
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <Label Content="PARISS" FontSize="22" HorizontalAlignment="Center" />
+                <Label Content="{Binding Summary}" FontSize="13" HorizontalAlignment="Center" />
+                <Image Source="{Binding Icon}" Width="70" Margin="10" HorizontalAlignment="Center"/>
+                <Label Content="{Binding DayOfWeek}" FontSize="22" Margin="2" HorizontalAlignment="Center" />
+
+                <Button  Content="{Binding Summary}" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="75"
                 Command="{Binding CmdInit}" />
+            </StackPanel>
+
+
+            <ItemsControl ItemsSource="{Binding HourlyInfo}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="{Binding HourOfDay}"  />
+                            <Image Source="{Binding Icon}" Width="15"></Image>
+                            <Label Content="{Binding Temperature}"  />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <ListView ItemsSource="{Binding DailyInfo}" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Top">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" Width="30"></Image>
+                            <Label Content="{Binding DayOfWeek}" Margin="4"   Width="290"  />
+                            <Label Content="{Binding TemperatureHigh}"  Width="40" Margin="2"/>
+                            <Label Content="{Binding TemperatureLow}"  Width="40" Margin="2"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>

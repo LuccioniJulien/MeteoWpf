@@ -48,6 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,7 @@
     <Compile Include="Model\WeatherHourlyInfo.cs" />
     <Compile Include="Repository\Api\IWeatherApi.cs" />
     <Compile Include="Repository\Api\WeatherApi.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\WeatherViewModel.cs" />
     <Compile Include="View\Weather.xaml.cs">
       <DependentUpon>Weather.xaml</DependentUpon>
@@ -118,7 +120,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\DataBase" />
+    <Folder Include="Repository\DataBase\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Asset\clear-day.png">

@@ -15,23 +15,33 @@ using Meteo.Repository.Api;
 
 namespace Meteo.ViewModel
 {
-    public class WeatherViewModel : INotifyPropertyChanged
+    public class WeatherViewModel : BaseViewModel<WeatherCurrent>
     {
         #region Getter Setter
 
-        private Weather _weatherForecast;
-
-        public Weather WeatherForecast
+        private string _summary;
+        public string Summary
         {
-            get => _weatherForecast;
-            set
-            {
-                _weatherForecast = value;
-                RaisePropertyChanged();
-            }
+            get => _summary;
+            set => SetProperty(ref _summary, value);
+        }
+
+        private string _icon;
+        public string Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
+        }
+
+        private string _dayOfWeek;
+        public string DayOfWeek
+        {
+            get => _dayOfWeek;
+            set => SetProperty(ref _dayOfWeek, value);
         }
 
         public ObservableCollection<WeatherDailyInfo> DailyInfo { get; } = new ObservableCollection<WeatherDailyInfo>();
+        public ObservableCollection<WeatherHourlyInfo> HourlyInfo { get; } = new ObservableCollection<WeatherHourlyInfo>();
 
         private ICommand _cmdInit;
         public ICommand CmdInit => _cmdInit ?? (_cmdInit = new Command(InitData));
@@ -40,24 +50,21 @@ namespace Meteo.ViewModel
 
         public WeatherViewModel()
         {
+
         }
 
         private async void InitData()
         {
-            var ok = new WeatherApi();
-            var (o, s, d) = await ok.GetWeatherForLocation();
-            s.ForEach(DailyInfo.Add);
+            var api = new WeatherApi();
+            var (weather, dailyInfo, hourlyInfo) = await api.GetWeatherForLocation();
+
+            (Summary, Icon, DayOfWeek) = weather;
+            Icon = weather.Icon;
+            dailyInfo.Skip(1)
+                     .ToList()
+                     .ForEach(DailyInfo.Add);
+
+            hourlyInfo.Take(12).ToList().ForEach(HourlyInfo.Add);
         }
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(name, new PropertyChangedEventArgs(name));
-        }
-
-        #endregion
     }
 }
