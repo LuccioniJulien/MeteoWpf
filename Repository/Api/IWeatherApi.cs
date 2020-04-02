@@ -5,6 +5,6 @@ namespace Meteo.Repository.Api
 {
     public interface IWeatherApi
     {
-        Task<Weather> GetWeatherForLocation(string latitude, string longitute);
+        Task<Weather> GetWeatherForLocation(string latitude = "37.7749", string longitute = "-122.4194");
     }
 }

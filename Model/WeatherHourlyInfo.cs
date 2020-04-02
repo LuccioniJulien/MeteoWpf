@@ -29,7 +29,7 @@ namespace Meteo.Model
             set => _icon = value;
         }
         [JsonIgnore]
-        public string HourlyTemperature { get => $"{Temperature}°"; }
+        public string HourlyTemperature { get => $"{(int)Temperature}°"; }
 
     }
 }
