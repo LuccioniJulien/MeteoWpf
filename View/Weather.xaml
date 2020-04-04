@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Meteo.ViewModel"
         mc:Ignorable="d"
-        Title="Weather" Height="575" Width="430">
+        ResizeMode="NoResize"
+        Title="Weather" Height="580" Width="430">
     <Window.DataContext>
         <local:WeatherViewModel />
     </Window.DataContext>
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Vertical">
-                <ComboBox ItemsSource="{Binding Towns}" FontSize="22" SelectedItem="{Binding Towns[0]}" HorizontalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding Towns}" FontSize="22" SelectedItem="{Binding SelectedTown}" Margin="4" HorizontalAlignment="Center"/>
                 <Label Content="{Binding Summary}" FontSize="13" HorizontalAlignment="Center" />
                 <Image Source="{Binding Icon}" Width="70" Margin="10" HorizontalAlignment="Center"/>
                 <Label Content="{Binding DayOfWeek}" FontSize="22" Margin="2" HorizontalAlignment="Center" />

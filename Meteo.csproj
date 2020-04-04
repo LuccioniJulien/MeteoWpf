@@ -44,9 +44,13 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NodaTime, Version=2.4.7.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.2.4.7\lib\net45\NodaTime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -74,8 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helper\Command.cs" />
+    <Compile Include="Extension\WeatherDailyInfoExtension.cs" />
+    <Compile Include="Extension\WeatherHourlyInfoExtension.cs" />
+    <Compile Include="Helper\Dependency\Command.cs" />
     <Compile Include="Helper\Constant.cs" />
+    <Compile Include="Helper\Dependency\CommandProvider.cs" />
+    <Compile Include="Helper\Dependency\ICommandProvider.cs" />
+    <Compile Include="Helper\Dependency\ITimeProvider.cs" />
+    <Compile Include="Helper\Dependency\TimeProvider.cs" />
     <Compile Include="Helper\Location.cs" />
     <Compile Include="Model\WeatherCurrent.cs" />
     <Compile Include="Model\Weather.cs" />

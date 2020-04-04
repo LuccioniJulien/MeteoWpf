@@ -1,5 +1,6 @@
 ﻿namespace Meteo
 {
+    using Meteo.Helper.Dependency;
     using Meteo.Repository.Api;
     using Meteo.View;
     using Meteo.ViewModel;
@@ -18,6 +19,8 @@
 
             IUnityContainer container = new UnityContainer();
             container.RegisterType<IWeatherApi, WeatherApi>();
+            container.RegisterType<ICommandProvider, CommandProvider>();
+            container.RegisterType<ITimeProvider, TimeProvider>();
 
             var viewViewModel = container.Resolve<WeatherViewModel>();
             var window = new Weather { DataContext = viewViewModel };

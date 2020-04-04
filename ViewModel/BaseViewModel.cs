@@ -4,9 +4,9 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    public abstract class BaseViewModel<T> : INotifyPropertyChanged
+    public abstract class BaseViewModel<TViewModel> : INotifyPropertyChanged
     {
-        public T Model { get; set; }
+        public TViewModel Model { get; set; }
 
         #region INotifyPropertyChanged
 
@@ -17,9 +17,9 @@
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+        protected void SetProperty<TProperty>(ref TProperty storage, TProperty value, [CallerMemberName] string propertyName = "")
         {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
+            if (EqualityComparer<TProperty>.Default.Equals(storage, value))
                 return;
             storage = value;
             RaisePropertyChanged(propertyName);

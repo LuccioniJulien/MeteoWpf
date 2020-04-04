@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using Meteo.Model;
-
-namespace Meteo.Repository.Api
+﻿namespace Meteo.Repository.Api
 {
+    using System.Threading.Tasks;
+    using Meteo.Helper;
+    using Meteo.Model;
+
     public interface IWeatherApi
     {
-        Task<Weather> GetWeatherForLocation(string latitude = "37.7749", string longitute = "-122.4194");
+        Task<Weather> GetWeatherForLocation(Location location);
     }
 }

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Meteo.Model
 {
+    using System.Collections.Generic;
+
     public class WeatherDaily
     {
         public string Summary { get; set; }

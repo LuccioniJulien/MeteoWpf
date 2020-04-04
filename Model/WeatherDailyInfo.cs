@@ -2,21 +2,12 @@
 {
     using Newtonsoft.Json;
     using System;
-    using System.ComponentModel.DataAnnotations;
-
     public class WeatherDailyInfo
     {
         public double Temperature { get; set; }
-        public Int64 Time { get; set; }
+        public long Time { get; set; }
         [JsonIgnore]
-        public string DayOfWeek
-        {
-            get
-            {
-                var date = DateTimeOffset.FromUnixTimeSeconds(Time).DateTime;
-                return date.DayOfWeek.ToString();
-            }
-        }
+        public string DayOfWeek { get; set; }
 
         private string _icon;
         public string Icon

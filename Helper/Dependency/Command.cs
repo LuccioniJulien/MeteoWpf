@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace Meteo.Helper
+﻿namespace Meteo.Helper
 {
+    using System;
+    using System.Windows.Input;
+
     public class Command : ICommand
     {
         public event EventHandler CanExecuteChanged

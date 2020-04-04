@@ -1,26 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Meteo.Model
+﻿namespace Meteo.Model
 {
+    using Newtonsoft.Json;
+    using System;
     public class WeatherHourlyInfo
     {
         public double Temperature { get; set; }
-        public Int64 Time { get; set; }
+        public long Time { get; set; }
 
         [JsonIgnore]
-        public string HourOfDay
-        {
-            get
-            {
-                var date = DateTimeOffset.FromUnixTimeSeconds(Time).DateTime;
-                return date.Hour.ToString();
-            }
-        }
+        public string HourOfDay { get; set; }
 
         private string _icon;
         public string Icon

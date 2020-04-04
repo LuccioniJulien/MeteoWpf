@@ -10,9 +10,9 @@ namespace Meteo.Repository.Api
     {
         private readonly string _url = $"{Constant.BaseApi}{Constant.ApiKey}/";
 
-        public Task<Weather> GetWeatherForLocation(string latitude = "37.7749", string longitute = "-122.4194")
+        public Task<Weather> GetWeatherForLocation(Location location)
         {
-            var url = $"{_url}{latitude},{longitute}?lang=en&units=si";
+            var url = $"{_url}{location.Latitude},{location.Longitude}?lang=en&units=si";
             return url.GetJsonAsync<Weather>();
         }
     }
